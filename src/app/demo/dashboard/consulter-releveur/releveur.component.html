@@ -1,0 +1,398 @@
+<div *ngIf="adminGotTheRole" class="row">
+    <div class="col-lg-12">
+        <input type="text" style="width: 97%;margin-left: 1.5%;" id="newsearch" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" (click)="myFunction()" (keyup)="filterFunction()" value="{{clickedUserRelev.phoneNumber}}">
+
+        <div class="dropdown">
+
+            <!--
+        <input type="text" placeholder="Search.." id="newsearch" style="width: 1020px;" (click)="myFunction()" (keyup)="filterFunction()" value="{{PhoneUser}}">
+    -->
+
+            <div id="myDropdown" class="dropdown-content" style="width: 400px;">
+
+
+                <perfect-scrollbar style="min-height: 10px;max-height: 280px;">
+
+                    <dl *ngFor="let chaqueUserRelev of usersIsReleve;let releveIndex=index;">
+
+
+
+                        <dt style="padding-left: 2%;" id="liste" (click)="UserRelevClick(releveIndex)"> {{chaqueUserRelev.phoneNumber}}</dt>
+
+                    </dl>
+
+                </perfect-scrollbar>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <app-ui-modal #myPersistenceModal [containerClick]="false">
+        <div class="app-modal-header">
+            <h5 class="modal-title">information du releve</h5>
+        </div>
+        <div class="app-modal-body">
+
+            <div class="row" style="width: 100%">
+                <div class="col-md-5">
+                    <app-alert type="light"><i>nom  client</i></app-alert>
+                </div>
+                <div class="col-md-7">
+                    <app-alert type="light"><i id="demo01"></i></app-alert>
+                </div>
+            </div>
+            <div class="row" style="width: 100%">
+                <div class="col-md-5">
+                    <app-alert type="light"><i>Index</i></app-alert>
+                </div>
+                <div class="col-md-7">
+                    <app-alert type="light"><i>{{clickedReleve.indexe}}</i></app-alert>
+                </div>
+            </div>
+            <div class="row" style="width: 100%">
+                <div class="col-md-5">
+                    <app-alert type="light"><i>identifiant </i></app-alert>
+                </div>
+                <div class="col-md-7">
+                    <app-alert type="light"><i id="demo1"></i></app-alert>
+                </div>
+            </div>
+            <div class="row" style="width: 100%">
+                <div class="col-md-5">
+                    <app-alert type="light"><i>Adress</i></app-alert>
+                </div>
+                <div class="col-md-7">
+                    <app-alert type="light"><i id="demo2"></i></app-alert>
+                </div>
+            </div>
+
+            <!--
+
+     
+       
+        <div class="row" style="width: 100%" >
+            <div class="col-md-5">
+                <app-alert type="light"><i>Nom Client</i></app-alert>
+            </div>
+            <div class="col-md-7">
+                <app-alert type="light"><i id="demo">{{clickedReleve.point.identifiant}}</i></app-alert>
+            </div>
+        </div>
+        <div class="row" style="width: 100%" >
+            <div class="col-md-5">
+                <app-alert type="light"><i>Numero Compteur</i></app-alert>
+            </div>
+            <div class="col-md-7">
+                <app-alert type="light"><i id="demo">{{clickedReleve.point.numeroCompteur}}</i></app-alert>
+            </div>
+        </div>
+        <div class="row" style="width: 100%">
+            <div class="col-md-5">
+                <app-alert type="light"><i>Adress</i></app-alert>
+            </div>
+            <div class="col-md-7">
+                <app-alert type="light"><i>{{clickedReleve.point.location}}</i></app-alert>
+            </div>
+        </div>
+    -->
+        </div>
+        <div class="app-modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="myPersistenceModal.hide()">Close</button>
+        </div>
+    </app-ui-modal>
+    <app-ui-modal #myPersistenceModal1 [hideFooter]="true" [dialogClass]="'modal-lg'">
+        <div class="app-modal-header">
+            <h5 class="modal-title">info et position du releve</h5>
+        </div>
+        <div class="app-modal-body">
+
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <app-map></app-map>
+                    </div>
+                    <div class="col-md-6">
+
+                        <div class="row" style="width: 100%">
+                            <div class="col-md-5">
+                                <app-alert type="light"><i>id user</i></app-alert>
+                            </div>
+                            <div class="col-md-7">
+                                <app-alert type="light"><i> {{claimclick.idUser}}</i></app-alert>
+                            </div>
+                        </div>
+                        <div class="row" style="width: 100%">
+                            <div class="col-md-5">
+                                <app-alert type="light"><i>Reclamations </i></app-alert>
+                            </div>
+                            <div class="col-md-5" style="margin-top: 2%;">
+                                <perfect-scrollbar style="min-height: 5px;max-height: 100px;">
+
+                                    <div *ngFor="let tag of claimTags;let userIndex=index">
+                                        <i style="padding-left: 10px;">{{tag}}</i>
+                                    </div>
+                                </perfect-scrollbar>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+            <div class="app-modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="myPersistenceModal1.hide()">Close</button>
+            </div>
+        </div>
+
+
+    </app-ui-modal>
+
+    <app-ui-modal #myPersistenceModal2 [containerClick]="false">
+        <div class="app-modal-header">
+            <h5 class="modal-title">Points Releveurs</h5>
+
+        </div>
+        <div class="app-modal-body" id="refrechdiv">
+            <form action="javascript:">
+                <app-alert type="{{type}}" id="alert">{{alertText}}</app-alert>
+
+
+                <perfect-scrollbar style="min-height: 10px;max-height: 280px;">
+                    <div id="revlevsaved">
+
+                        <app-alert type="light"><i id="clicksave">  click sur + pour ajouter nouvelle reference</i></app-alert>
+
+                        <div style="padding-left: 5%;" class="showInputField" id="oInput"></div>
+                    </div>
+
+
+                </perfect-scrollbar>
+
+            </form>
+        </div>
+        <div class="app-modal-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm">
+                        <button type="button" class="btn btn-primary" id="addRelev" (click)="add()">+ </button>
+
+                    </div>
+                    <div class="col-sm">
+                        <button type="button" class="btn btn-primary" id="saveRelev" (click)=" save()">Save </button>
+
+                    </div>
+                    <div class="col-sm">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="myPersistenceModal2.hide()">Close</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+        </div>
+    </app-ui-modal>
+
+
+
+    <div class="col-md-12">
+
+        <div class="col-sm-12">
+            <app-card [options]="false" cardTitle="Information du releve">
+                <div id="contenuUtlisateur">
+                    <div style="height: 300px;">
+                        <ngb-tabset>
+                            <ngb-tab title="Info">
+                                <ng-template ngbTabContent>
+                                    <div class="row" style="width: 100%" *ngIf="initializing">
+                                        <div class="col-md-5">
+                                            <app-alert type="light"><i>Id User releveur</i></app-alert>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <app-alert type="light"><i id="demo">{{clickedUserRelev.id}}</i></app-alert>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="width: 100%" *ngIf="initializing">
+                                        <div class="col-md-5">
+                                            <app-alert type="light"><i>Language</i></app-alert>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <app-alert type="light"><i>{{clickedUserRelev.currentLanguage}}</i></app-alert>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="width: 100%" *ngIf="initializing">
+                                        <div class="col-md-5">
+                                            <app-alert type="light"><i>Phone number</i></app-alert>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <app-alert type="light"><i>{{clickedUserRelev.phoneNumber}}</i></app-alert>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="width: 100%" *ngIf="initializing">
+                                        <button style="margin-top: 3%;" type="button" class="btn btn-primary" data-toggle="modal" id="pointRelev" (click)="myPersistenceModal2.show()">Ajouter des reférences</button>
+
+                                    </div>
+
+                                </ng-template>
+                            </ngb-tab>
+                            <ngb-tab title="Releveur">
+                                <ng-template ngbTabContent>
+
+                                    <perfect-scrollbar style="min-height: 5px;max-height: 300px;">
+                                        <div *ngFor="let chaquereleve of ListeReleve;let chaqueRelevindex=index">
+                                            <div class="row" id="bordrelev" (click)="releverClick(chaqueRelevindex);ReclamAdmininstration1(myPersistenceModal)">
+                                                <i class="col-md-6 text-left">
+    
+                                            {{chaquereleve.point.identifiant}}
+                                                </i>
+                                                <i class="col-md-6 text-right"> {{timestampToDate(chaquereleve.dateReleve)}}</i>
+                                            </div>
+                                        </div>
+
+                                    </perfect-scrollbar>
+
+                                </ng-template>
+                            </ngb-tab>
+                            <ngb-tab title="Reclamtion">
+                                <ng-template ngbTabContent>
+                                    <perfect-scrollbar [style.max-height]="(window.innerHeight-410)+'px'" [style.min-height]="(window.innerHeight-410)+'px'">
+
+                                        <div *ngFor="let chaquecalim of listReclamation;let chaqueClaimindex=index">
+                                            <div class="row" id="bordrelev" (click)="claimClick(chaqueClaimindex);Reclam(myPersistenceModal1)">
+                                                <i class="col-md-6 text-left">
+    
+                                            {{chaquecalim.idUser}}
+                                                </i>
+                                                <i class="col-md-6 text-right"> {{timestampToDate(chaquecalim.created)}}</i>
+                                            </div>
+                                        </div>
+
+                                    </perfect-scrollbar>
+
+                                </ng-template>
+                            </ngb-tab>
+                        </ngb-tabset>
+                    </div>
+                </div>
+            </app-card>
+        </div>
+    </div>
+    <!--
+    <div class="col-md-5">
+        <div class="col-sm-12">
+            <app-card [hidHeader]="true" cardClass="tab-card">
+                <h5 class="mb-3">Basic Pills</h5>
+                <ngb-tabset type="pills">
+                    <ngb-tab title="HOME" class="mb-3">
+                        <ng-template ngbTabContent>
+                            <p>1</p>
+                            <div class="row" style="width: 100%" *ngIf="initializing">
+                                <div class="col-md-5">
+                                    <app-alert type="light"><i>Id User releveur</i></app-alert>
+                                </div>
+                                <div class="col-md-7">
+                                    <app-alert type="light"><i id="demo">{{clickedUserRelev.id}}</i></app-alert>
+                                </div>
+                            </div>
+                            <div class="row" style="width: 100%" *ngIf="initializing">
+                                <div class="col-md-5">
+                                    <app-alert type="light"><i>Language</i></app-alert>
+                                </div>
+                                <div class="col-md-7">
+                                    <app-alert type="light"><i>{{clickedUserRelev.currentLanguage}}</i></app-alert>
+                                </div>
+                            </div>
+                            <div class="row" style="width: 100%" *ngIf="initializing">
+                                <div class="col-md-5">
+                                    <app-alert type="light"><i>Phone number</i></app-alert>
+                                </div>
+                                <div class="col-md-7">
+                                    <app-alert type="light"><i>{{clickedUserRelev.phoneNumber}}</i></app-alert>
+                                </div>
+                            </div>
+
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab title="PROFILE">
+                        <ng-template ngbTabContent>
+
+                            <div *ngFor="let chaquereleve of ListeReleve;let chaqueRelevindex=index">
+                                <div class="row" id="bordrelev" (click)="releverClick(chaqueRelevindex);ReclamAdmininstration1(myPersistenceModal)">
+                                    <i class="col-md-6 text-left">
+
+                                {{chaquereleve.point.identifiant}}
+                                    </i>
+                                    <i class="col-md-6 text-right"> {{timestampToDate(chaquereleve.dateReleve)}}</i>
+                                </div>
+                            </div>
+
+
+
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab title="CONTACT">
+                        <ng-template ngbTabContent>
+                            <p>3</p>
+                        </ng-template>
+                    </ngb-tab>
+                </ngb-tabset>
+            </app-card>
+        </div>
+    </div>
+-->
+    <!--
+    <div class="col-md-5">
+        <app-card [options]="false" cardTitle="information ">
+            <div style="height: 300px;">
+                <div class="row" style="width: 100%">
+                    <div class="col-md-5">
+                        <app-alert type="light"><i>Nom Client</i></app-alert>
+                    </div>
+                    <div class="col-md-7">
+                        <app-alert type="light"><i>{{clickedReleve.point.identifiant}}</i></app-alert>
+                    </div>
+                </div>
+                <div class="row" style="width: 100%">
+                    <div class="col-md-5">
+                        <app-alert type="light"><i>Numero Compteur</i></app-alert>
+                    </div>
+                    <div class="col-md-7">
+                        <app-alert type="light"><i>{{clickedReleve.point.numeroCompteur}}</i></app-alert>
+                    </div>
+                </div>
+                <div class="row" style="width: 100%">
+                    <div class="col-md-5">
+                        <app-alert type="light"><i>Adress</i></app-alert>
+                    </div>
+                    <div class="col-md-7">
+                        <app-alert type="light"><i>{{clickedReleve.point.location}}</i></app-alert>
+                    </div>
+                </div>
+
+            </div>
+        </app-card>
+
+    </div>
+-->
+
+</div>
